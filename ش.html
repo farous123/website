@@ -148,34 +148,6 @@ html[data-lang="en"] .hero-brand .hb-en{display:flex}
 .hero-brand .hb-sub{display:block;margin-top:8px;padding-bottom:6px;border-bottom:1px solid rgba(201,204,208,.75);font-size:11px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:#dfe3e6;text-shadow:0 1px 3px rgba(0,0,0,.55)}
 .hero-brand .hb-ar .hb-sub{letter-spacing:0;font-size:13px;text-transform:none}
 }
-
-/* ===== Touch devices: tap/slide finger = hover effect ===== */
-@media (hover:none){
-.text-link.th span{background:var(--teal);color:var(--paper);transform:translateX(-4px)}
-.service-card.th{background:var(--teal);transform:translateY(-5px)}
-.project-feature.th img{transform:scale(1.06)}
-.project-item.th{padding-right:10px;color:var(--teal)}
-.project-item.th .project-arrow{transform:rotate(-45deg)}
-.news-item.th{padding-right:10px}
-.core-card.th{background:#fff;transform:translateY(-5px);box-shadow:0 20px 40px rgba(20,35,40,.08)}
-.contact-btn.th{background:var(--teal);color:var(--paper)}
-.pf-btn.th{transform:translateY(-2px)}
-.pf-btn.th .pf-icon{transform:translateX(-4px)}
-.pf-btn-blue.th{background:#153fac;box-shadow:0 18px 36px rgba(26,79,214,.36)}
-.pf-btn-gold.th{background:#96700a;box-shadow:0 18px 36px rgba(184,134,11,.36)}
-.careers-submit.th{opacity:.86;transform:translateY(-2px)}
-.service-card.th:before{transform:scaleX(1);transform-origin:left}
-.service-card.th .service-icon{transform:translateY(-6px) rotate(-4deg);color:#fff}
-.core-card.th:after{width:100%}
-.core-card.th .core-icon{transform:translateY(-5px) scale(1.08)}
-.stat.th b{color:var(--orange);transform:translateY(-4px)}
-.project-feature.th:before{transform:translateX(120%)}
-.project-feature.th .project-overlay{transform:translateY(-7px)}
-.project-item.th:before,.project-item[aria-pressed="true"]:before{transform:scaleY(1);transform-origin:top}
-.contact-btn.th:before,.pf-btn.th:before{transform:translateX(110%) skewX(-18deg)}
-.cm-submit.th{transform:translateY(-2px);filter:brightness(1.05);box-shadow:0 12px 30px rgba(214,177,66,.38)}
-}
-@media (hover:none){.service-card,.core-card,.project-item,.project-feature,.news-item,.stat,.contact-btn,.pf-btn,.text-link{-webkit-tap-highlight-color:transparent}}
 </style>
 </head>
 <body>
@@ -808,29 +780,6 @@ html[data-lang="en"] .hero-brand .hb-en{display:flex}
   } else {
     revealEls.forEach(function(el){ el.classList.add('visible'); });
   }
-})();
-</script>
-
-<script>
-(function(){
-  var SEL='.service-card,.core-card,.project-feature,.project-item,.news-item,.stat,.contact-btn,.pf-btn,.text-link,.careers-submit,.cm-submit';
-  var cur=null,timer=null;
-  function setCur(el){
-    if(el===cur) return;
-    if(cur) cur.classList.remove('th');
-    cur=el;
-    if(cur) cur.classList.add('th');
-  }
-  function hold(){ clearTimeout(timer); timer=setTimeout(function(){ setCur(null); },900); }
-  function pick(x,y){ var e=document.elementFromPoint(x,y); return e&&e.closest?e.closest(SEL):null; }
-  document.addEventListener('touchstart',function(e){
-    var t=e.touches[0]; setCur(pick(t.clientX,t.clientY)); clearTimeout(timer);
-  },{passive:true});
-  document.addEventListener('touchmove',function(e){
-    var t=e.touches[0]; setCur(pick(t.clientX,t.clientY));
-  },{passive:true});
-  document.addEventListener('touchend',hold,{passive:true});
-  document.addEventListener('touchcancel',function(){ setCur(null); },{passive:true});
 })();
 </script>
 </body>
